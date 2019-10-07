@@ -9,7 +9,7 @@ class Navbar extends Component {
                     <div className = "nav-wrapper white">
                         <Link to="/" style = {{fontFamily: "monospace"}} className = "col s5 brand-logo center black-text">
                             <i className = "material-icons">code</i>
-                            MERN
+                            I AM
                         </Link>
                     </div>
                 </nav>
