@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {logoutUser} from "../../actions/authActions";
 
 class Dashboard extends Component {
-    onLogoutClick(e) {
+    onLogoutClick = e => {
         e.preventDefault();
         this.props.logoutUser();
     };
@@ -18,7 +18,7 @@ class Dashboard extends Component {
                         <h4> 
                             <b>Hey there, </b> {user.name.split(" ")[0]}
                             <p className = "flow-text grey-text text-darken-1">
-                                You are loggin into a full-stack {" "}
+                                You are logged into a full-stack {" "}
                                 <span style = {{fontFamily: "monospace"}}>MERN</span> app 
                             </p>
                         </h4>
