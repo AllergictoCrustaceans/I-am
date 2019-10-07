@@ -33,7 +33,7 @@ export const loginUser = userData => dispatch => {
             const decoded = jwt_decode(token);
 
             //Set current user
-            displatch(setCurrentUser(decoded));
+            dispatch(setCurrentUser(decoded));
         })
         .catch(err => 
             dispatch ({
@@ -44,6 +44,14 @@ export const loginUser = userData => dispatch => {
 };
 
 //Set logged in user
+export const setCurrentUser = decoded => {
+    return {
+        type: SET_CURRENT_USER,
+        payload: decoded
+    };
+};
+
+//User loading
 export const setUserLoading = () => {
     return {
         type: USER_LOADING
