@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {loginUser} from '../../actions/authActions';
+import classnames from 'classnames';
 
 class Login extends Component {
     constructor () {
@@ -8,6 +12,18 @@ class Login extends Component {
             email: "",
             password: "",
             errors: {}
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.auth.isAuthenticated) {
+            this.props.history.push('/dashboard'); //push user to dashboard when they login
+        }
+
+        if(nextProps.errors) {
+            this.setState ({
+                errors: nextProps.errors
+            });
         }
     }
 
@@ -25,7 +41,7 @@ class Login extends Component {
             password: this.state.password
         };
 
-        console.log(userData);
+        this.props.loginUser(userData); //we don't need to pass this.props.history as a parameter b/c we're redirecting within our component
     };
 
     render () {
@@ -55,18 +71,32 @@ class Login extends Component {
                                     value = {this.state.email}
                                     error= {errors.email}
                                     id = "email"
-                                    type = "text" />
-                                <label htmlFor = "email">Email</label>    
+                                    type = "text"
+                                    className = {classnames ("", {
+                                        invalid: errors.email || errors.emailnotfound
+                                    })} />
+                                <label htmlFor = "email">Email</label>
+                                <span className = "red-text">
+                                    {errors.email}
+                                    {errors.emailnotfound}
+                                </span>    
                             </div>
 
                             <div className = "input-field col s12">
                                 <input
                                     onChange = {this.onChange}
-                                    value = {this.state.passowrd}
+                                    value = {this.state.password}
                                     error = {errors.password}
                                     id = "password"
-                                    type = "password" />
+                                    type = "password" 
+                                    className = {classnames ("", {
+                                        invalid: errors.password || errors.passwordincorrect
+                                    })} />
                                 <label htmlFor = "password">Password</label>
+                                <span className = "red-text">
+                                    {errors.password}
+                                    {errors.passwordincorrect}
+                                </span>
                             </div>
 
                             <div className = "col s12" style = {{paddingLeft: "11.250px"}}>
@@ -86,8 +116,22 @@ class Login extends Component {
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 }
 
-export default Login;
+Login.propTypes = {
+    loginUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+});
+
+export default connect (
+    mapStateToProps,
+    {loginUser}
+)(Login);
