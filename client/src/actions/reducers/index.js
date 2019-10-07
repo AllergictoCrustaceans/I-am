@@ -3,6 +3,6 @@ import authReducer from './authReducers';
 import errorReducer from './errorReducers';
 
 export default combineReducers ({
-    auth:authReducer,
+    auth: authReducer,
     errors: errorReducer
 });
