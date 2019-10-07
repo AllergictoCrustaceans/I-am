@@ -11,6 +11,12 @@ class Navbar extends Component {
                             <i className = "material-icons">code</i>
                             I AM
                         </Link>
+
+
+                        {/* Setting Link */}
+                        
+
+                        {/* Help Link */}
                     </div>
                 </nav>
             </div>
