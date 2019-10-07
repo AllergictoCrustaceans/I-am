@@ -70,7 +70,7 @@ class Register extends Component {
                             </p>
                         </div>
                         
-                        <form noVlaidate onSubmit= {this.onSubmit}>
+                        <form noValidate onSubmit= {this.onSubmit}>
 
 
                             <div className = "input-field col s12">

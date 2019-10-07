@@ -71,7 +71,7 @@ class Login extends Component {
                             </p>
                         </div>
 
-                        <form noValidate obSubmit = {this.onSubmit}>
+                        <form noValidate onSubmit = {this.onSubmit}>
                             <div className = "input-field col s12">
                                 <input
                                     onChange = {this.onChange} 
