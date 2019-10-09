@@ -13,6 +13,9 @@ class Navbar extends Component {
                         </Link>
 
 
+                        {/* Profile Link */}
+
+
                         {/* Setting Link */}
                         
 
