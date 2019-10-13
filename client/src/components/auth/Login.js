@@ -22,7 +22,7 @@ class Login extends Component {
         }
     }
 
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         if(nextProps.auth.isAuthenticated) {
             this.props.history.push('/dashboard'); //push user to dashboard when they login
         }
@@ -33,6 +33,26 @@ class Login extends Component {
             });
         }
     }
+
+    // componentDidUpdate(prevProps, prevState) {
+    //     if(nextProps.auth.isAuthenticated) {
+    //         this.props.history.push('/dashboard');
+    //     }
+        
+    //     if(nextProps.error) {
+    //         this.setState ({
+    //             errors: nextProps.errors
+    //         });
+    //     }
+    // }
+
+    // static getDerivedStateFromProps(nextProps, prevState) {
+    //     if(nextProps.auth.isAuthenticated) {
+    //         return {}
+    //     } else {
+    //         return null;    
+    //     }
+    // }
 
     onChange = e => {
         this.setState ({ [e.target.id] : e.target.value });
