@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import {logoutUser} from "../../actions/authActions";
 
 class Dashboard extends Component {
@@ -33,6 +34,18 @@ class Dashboard extends Component {
                             className = "btn btn-large waves-effect waves-light hoverable blue accent-3">
                             Logout
                         </button>
+
+                        <div className = "col s6">
+                            <Link to= "/chathistory" style ={{width: "140px", borderRadius: "20px", letterSpacing: "1.5px"}} className = "btn btn-large waves-effect waves-light hoverable blue accent-3">
+                                Chat History
+                            </Link>
+                        </div>
+                        <div className = "col s6">
+                            <Link to="/mood" style={{width: "140px", borderRadius: "20px", letterSpacing: "1.5px"}} className = "btn btn-large waves-effect waves-light hoverable purple black-text">
+                                Mood
+                            </Link>
+                        </div>
+
                     </div>
                 </div>
             </div>
