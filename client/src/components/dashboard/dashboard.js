@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import {logoutUser} from "../../actions/authActions";
 
 class Dashboard extends Component {
@@ -12,14 +13,17 @@ class Dashboard extends Component {
     render() {
         const {user} = this.props.auth;
         return (
-            <div style= {{height: "75px"}} className = "container valign-wrapper" >
+
+            // blender import background
+
+            <div style= {{height: "25px"}} className = "container valign-wrapper" >
                 <div className = "row">
                     <div className = "col s12 center-align">
                         <h4> 
                             <b>Hey there, </b> {user.name.split(" ")[0]}
                             <p className = "flow-text grey-text text-darken-1">
                                 You are logged into a full-stack {" "}
-                                <span style = {{fontFamily: "monospace"}}>MERN</span> app 
+                                <span style = {{fontFamily: "monospace"}}>I AM</span> 
                             </p>
                         </h4>
                         <button
@@ -33,6 +37,18 @@ class Dashboard extends Component {
                             className = "btn btn-large waves-effect waves-light hoverable blue accent-3">
                             Logout
                         </button>
+
+                        <div className = "col s6">
+                            <Link to= "/chathistory" style ={{width: "140px", borderRadius: "20px", letterSpacing: "1.5px"}} className = "btn btn-large waves-effect waves-light hoverable blue accent-3">
+                                Chat History
+                            </Link>
+                        </div>
+                        <div className = "col s6">
+                            <Link to="/mood" style={{width: "140px", borderRadius: "20px", letterSpacing: "1.5px"}} className = "btn btn-large waves-effect waves-light hoverable purple black-text">
+                                Mood
+                            </Link>
+                        </div>
+
                     </div>
                 </div>
             </div>

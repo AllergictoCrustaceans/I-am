@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
 import {Link, withRouter} from 'react-router-dom';
+// import { Button, Divider, Form, Grid, Segment } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {registerUser} from '../../actions/authActions';
 import classnames from 'classnames';
+import Facebook from './Facebook';
+import Google from './Google';
 
 class Register extends Component {
     constructor() {
@@ -24,7 +27,7 @@ class Register extends Component {
         }
     }
 
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         if(nextProps.errors) {
             this.setState ({
                 errors: nextProps.errors
@@ -54,24 +57,28 @@ class Register extends Component {
         return (
             <div className = "container" >
                 <div className = "row">
-                    <div className = "col s8 offset-s2">
+                    <div className = "col s12">
                         <Link to="/" className = "btn-flat waves-effect">
-                            <i className = "material-icons left">keyboard_backspace</i> Back to home
+                            <i className = "material-icons left">keyboard_backspace</i> Back to Main Screen
                         </Link>
-                        
-                        <div className = "col s12" style = {{paddingLeft: "11.250px"}}>
-                            <h4>
-                                <b>Register</b> below
-                            </h4>
-                            <p className = "grey-text text-darken-1">
-                                Already have an account? 
-                                <Link to="/login">Login</Link>
-                            </p>
+                    </div>
+                </div>
+                <div className = "row">
+                    <div className = "col s6" style = {{paddingLeft: "11.250px"}}>
+                        <h5>
+                            <b>Login with and existing account</b>
+                        </h5>
+                        <div className = "col s10">
+                            <Facebook />
+                            <br/>
+                            <Google />
                         </div>
-                        
+                    </div>
+                    <div className = "col s6">
+                        <h5>
+                            <b>Register Below</b>
+                        </h5>
                         <form noValidate onSubmit= {this.onSubmit}>
-
-
                             <div className = "input-field col s12">
                                 <input
                                     onChange = {this.onChange}
@@ -141,6 +148,11 @@ class Register extends Component {
                                     className = "btn btn-large waves-effect waves-light hoverable blue accent-3">
                                     Sign Up
                                 </button>
+
+                                <p className = "grey-text text-darken-1">
+                                Already have an account? 
+                                <Link to="/login"> Login</Link>
+                                </p>
                             </div>
                         </form>
                     </div>
