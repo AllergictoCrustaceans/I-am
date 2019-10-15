@@ -41,6 +41,7 @@ if(localStorage.jwtToken) {
 
 class App extends Component {
   render () {
+    // Settings and help buttons 
     return (
       <Provider store = {store}>
         <Router>
