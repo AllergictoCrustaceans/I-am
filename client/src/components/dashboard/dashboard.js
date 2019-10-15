@@ -13,7 +13,10 @@ class Dashboard extends Component {
     render() {
         const {user} = this.props.auth;
         return (
-            <div style= {{height: "75px"}} className = "container valign-wrapper" >
+
+            // blender import background
+
+            <div style= {{height: "25px"}} className = "container valign-wrapper" >
                 <div className = "row">
                     <div className = "col s12 center-align">
                         <h4> 
