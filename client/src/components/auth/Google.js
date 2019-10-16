@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import GoogleLogin from 'react-google-login';
 
+const REACT_APP_G = process.env.REACT_APP_G;
+
 class Google extends Component {
     state = {
         isLoggedIn: false,
@@ -20,9 +22,38 @@ class Google extends Component {
         })
     }
 
-    componentClicked = () => {
-        console.log('clicked');
-    }
+    // REPLACE WITH THE CODE BELOW
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        if (nextProps.auth.isAuthenticated) {
+          this.props.history.push("/dashboard"); // push user to dashboard when they login
+        }
+    if (nextProps.errors) {
+          this.setState({
+            errors: nextProps.errors
+          });
+        }
+      }
+
+
+    // componentDidUpdate(prevProps, prevState) {
+    //     if(nextProps.auth.isAuthenticated) {
+    //         this.props.history.push('/dashboard');
+    //     }
+        
+    //     if(nextProps.error) {
+    //         this.setState ({
+    //             errors: nextProps.errors
+    //         });
+    //     }
+    // }
+
+    // static getDerivedStateFromProps(nextProps, prevState) {
+    //     if(nextProps.auth.isAuthenticated) {
+    //         return {}
+    //     } else {
+    //         return null;    
+    //     }
+    // }  
 
     render() {
         let gContent;
@@ -38,8 +69,8 @@ class Google extends Component {
             )
         } else {
             gContent = (<GoogleLogin
-                clientId="557209742581-q7v8fe7d7c54ajrbl6qegv9jtc8ea6ov.apps.googleusercontent.com"
-                buttonText="Login"
+                clientId=''
+                buttonText=""
                 onSuccess={this.responseGoogle}
                 onFailure={this.responseGoogle}
                 cookiePolicy={'single_host_origin'}

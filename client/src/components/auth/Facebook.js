@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import FacebookLogin from 'react-facebook-login';
 
+const REACT_APP_FB = process.env.REACT_APP_FB;
+
 class Facebook extends Component {
     state = {
         isLoggedIn: false,
