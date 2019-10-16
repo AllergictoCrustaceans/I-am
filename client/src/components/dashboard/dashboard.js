@@ -5,13 +5,13 @@ import {Link} from 'react-router-dom';
 import {logoutUser} from "../../actions/authActions";
 
 class Dashboard extends Component {
-    // onLogoutClick = e => {
-    //     e.preventDefault();
-    //     this.props.logoutUser();
-    // };
+    onLogoutClick = e => {
+        e.preventDefault();
+        this.props.logoutUser();
+    };
 
     render() {
-        // const {user} = this.props.auth;
+        const {user} = this.props.auth;
         return (
 
             // blender import background
@@ -19,13 +19,13 @@ class Dashboard extends Component {
             <div style= {{height: "25px"}} className = "container valign-wrapper" >
                 <div className = "row">
                     <div className = "col s12 center-align">
-                        {/* <h4> 
-                            <b>Hey there, </b> {user.name.split(" ")[0]}
-                            <p className = "flow-text grey-text text-darken-1">
-                                You are logged into a full-stack {" "}
-                                <span style = {{fontFamily: "monospace"}}>I AM</span> 
-                            </p>
-                        </h4> */}
+                    <h4>
+                        <b>Hey there,</b> {user.name.split(" ")[0]}
+                        <p className="flow-text grey-text text-darken-1">
+                        You are logged into a full-stack{" "}
+                            <span style={{ fontFamily: "monospace" }}>MERN</span> app 👏
+                        </p>
+                    </h4>
                         <button
                             style = {{ 
                                 width: "150px",
@@ -33,7 +33,7 @@ class Dashboard extends Component {
                                 letterSpacing: "1.5px",
                                 marginTop: "1rem"
                             }}
-                            // onClick = {this.onLogoutClick}
+                            onClick = {this.onLogoutClick}
                             className = "btn btn-large waves-effect waves-light hoverable blue accent-3">
                             Logout
                         </button>
@@ -48,7 +48,6 @@ class Dashboard extends Component {
                                 Mood
                             </Link>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -56,18 +55,16 @@ class Dashboard extends Component {
     }
 }
 
-// Dashboard.propTypes = {
-//     logoutUser: PropTypes.func.isRequired,
-//     auth: PropTypes.object.isRequired
-// };
+Dashboard.propTypes = {
+    logoutUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired
+};
 
-// const mapStateToProps = state => ({
-//     auth: state.auth
-// });
+const mapStateToProps = state => ({
+    auth: state.auth
+});
 
-// export default connect (
-//     mapStateToProps,
-//     {logoutUser}
-// )(Dashboard);
-
-export default Dashboard;
+export default connect (
+    mapStateToProps,
+    {logoutUser}
+)(Dashboard);
