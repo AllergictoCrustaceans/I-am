@@ -38,7 +38,7 @@ class Google extends Component {
             )
         } else {
             gContent = (<GoogleLogin
-                clientId=""
+                clientId="557209742581-q7v8fe7d7c54ajrbl6qegv9jtc8ea6ov.apps.googleusercontent.com"
                 buttonText="Login"
                 onSuccess={this.responseGoogle}
                 onFailure={this.responseGoogle}
