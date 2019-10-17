@@ -4,7 +4,7 @@ let ChatLog = require('../../models/ChatLog');
 
 //NO ROUTES FOR DELETING, UPDATING
 
-//GET entire chatlog database
+//GET chatlog database userInput, botInput ONLY
 router.get('/chatlog', (req, res) => {
     ChatLog.find()
     .then((chatlog) => res.json(chatlog))
