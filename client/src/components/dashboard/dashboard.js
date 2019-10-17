@@ -38,11 +38,15 @@ class Dashboard extends Component {
                             Logout
                         </button>
 
+
+                        {/* Link to /chathistory endpoint from backend */}
                         <div className = "col s6">
                             <Link to= "/chathistory" style ={{width: "140px", borderRadius: "20px", letterSpacing: "1.5px"}} className = "btn btn-large waves-effect waves-light hoverable blue accent-3">
                                 Chat History
                             </Link>
                         </div>
+
+                        {/* Link to /mood endpoint from backend */}
                         <div className = "col s6">
                             <Link to="/mood" style={{width: "140px", borderRadius: "20px", letterSpacing: "1.5px"}} className = "btn btn-large waves-effect waves-light hoverable purple black-text">
                                 Mood
