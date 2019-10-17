@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-let Chat = require('../../models/Chat');
+let ChatLog = require('../../models/ChatLog');
 
 //NO ROUTES FOR DELETING, UPDATING
 
 //GET entire chatlog database
 router.get('/chatlog', (req, res) => {
-    Chat.find()
+    ChatLog.find()
     .then((chatlog) => res.json(chatlog))
     .catch((err) => res.status(400).json('Error:' + err))
 });
@@ -14,14 +14,14 @@ router.get('/chatlog', (req, res) => {
 
 //GET parts of the chatlog database
 router.get('/chatlog/:id', (req, res) => {
-    Chat.findById(req.params.id) 
+    ChatLog.findById(req.params.id) 
     .then(() => res.json(chatlog))
     .catch((err) => res.status(400).json('Error:' + err))
 });
 
 //POST user input into the chatlog database
 router.post('/chatlog', (req, res) => {
-    Chat.create(req.body) 
+    ChatLog.create(req.body) 
     .then(() => res.json('User input sent to chatlog database'))
     .catch((err) => res.status(400).json('Error:' + err))
 });
