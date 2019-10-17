@@ -7,6 +7,22 @@ const chatlogSchema = new Schema (
         },
         userInput : {
             type: String,
+        },
+        Positive: {
+            type: Number,
+            required: true,
+        },
+        Mixed: {
+            type: Number,
+            required: true
+        },
+        Neutral: {
+            type: Number,
+            required: true
+        },
+        Negative: {
+            type: Number,
+            required: true
         }
     },
     {
