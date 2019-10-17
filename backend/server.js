@@ -24,8 +24,9 @@ mongoose.connect(
 .catch(err => console.log(err));
 
 const users = require('./routes/api/users');
-const chatlog = require('./routes/api/chatLog');
+const chatlog = require('./routes/api/chatlog');
 const mood = require('./routes/api/mood');
+
 //Middleware
 app.use(passport.initialize());
 app.use(cors({origin: true, credentials: true}));
