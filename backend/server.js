@@ -25,7 +25,7 @@ mongoose.connect(
 
 const users = require('./routes/api/users');
 const chatlog = require('./routes/api/chatlog');
-const mood = require('./routes/api/mood');
+const mood = require('./routes/api/mood'); 
 
 //Middleware
 app.use(passport.initialize());
