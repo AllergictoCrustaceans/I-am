@@ -18,7 +18,7 @@ class Google extends Component {
             userID: response.userID,
             name: response.name,
             email: response.email,
-            picture: response.picture.data.url
+            // picture: response.picture.data.url
         })
     }
 
@@ -69,8 +69,8 @@ class Google extends Component {
             )
         } else {
             gContent = (<GoogleLogin
-                clientId=''
-                buttonText=""
+                clientId= {REACT_APP_G}
+                buttonText="Sign In with Google"
                 onSuccess={this.responseGoogle}
                 onFailure={this.responseGoogle}
                 cookiePolicy={'single_host_origin'}

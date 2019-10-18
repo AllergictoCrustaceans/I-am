@@ -40,10 +40,10 @@ class Facebook extends Component {
             )
         } else {
             fbContent = (<FacebookLogin
-                appId= ''
+                appId= {REACT_APP_FB}
                 autoLoad={true}
                 fields="name,email,picture"
-                onClick={this.componentClicked}
+                onClick={this.componentClicked} // bounce to dashboard 
                 callback={this.responseFacebook} />)
         }
         return (
