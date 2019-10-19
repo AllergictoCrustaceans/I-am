@@ -59,17 +59,18 @@ class Google extends Component {
         let gContent;
         if(this.state.isLoggedIn) {
             gContent = (
-                <div style = {{width: '400px', margin: 'auto', background: '#f4f4f4', padding: '20px'}}>
-                    <img src = {this.state.picture} alt={this.state.name} />
-                    <h2>
-                        Welcome {this.state.name}! 
-                        Email: {this.state.email}
-                    </h2>
-                </div>
+                // <div style = {{width: '400px', margin: 'auto', background: '#f4f4f4', padding: '20px'}}>
+                //     <img src = {this.state.picture} alt={this.state.name} />
+                //     <h2>
+                //         Welcome {this.state.name}! 
+                //         Email: {this.state.email}
+                //     </h2>
+                // </div>
+                <h1> Focus on me</h1>
             )
         } else {
             gContent = (<GoogleLogin
-                clientId= {REACT_APP_G}
+                clientId = {REACT_APP_G}
                 buttonText="Sign In with Google"
                 onSuccess={this.responseGoogle}
                 onFailure={this.responseGoogle}
