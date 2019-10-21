@@ -2,6 +2,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema();
 const chatlogSchema = new Schema (
     {
+        name: {
+            type:String,
+            required: true
+        },
+        date: {
+            type: Date,
+            default: Date.now
+        },
         botInput: {
             type: String,
         },
