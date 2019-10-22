@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {registerUser} from '../../actions/authActions';
 
 const REACT_APP_G = process.env.REACT_APP_G;
 
@@ -13,17 +17,32 @@ class Google extends Component {
     }
 
     responseGoogle = response => {
+        if(response.error) {
+            console.log(response.error);
+        }
         this.setState ({
             isLoggedIn: true,
             userID: response.userID,
-            name: response.name,
-            email: response.email,
-            // picture: response.picture.data.url
+            name: response.profileObj.name,
+            email: response.profileObj.email,
+            picture: response.profileObj.imageUrl
         })
+
+        const newUser = {
+            name: this.state.name,
+            email: this.state.email,
+            password: this.state.password,
+            password2: this.state.password2
+        }; 
+
+        this.props.registerUser(newUser, this.props.history);
+
+
     }
 
     // REPLACE WITH THE CODE BELOW
     UNSAFE_componentWillReceiveProps(nextProps) {
+        console.log(nextProps);
         if (nextProps.auth.isAuthenticated) {
           this.props.history.push("/dashboard"); // push user to dashboard when they login
         }
@@ -58,15 +77,15 @@ class Google extends Component {
     render() {
         let gContent;
         if(this.state.isLoggedIn) {
+
             gContent = (
-                // <div style = {{width: '400px', margin: 'auto', background: '#f4f4f4', padding: '20px'}}>
-                //     <img src = {this.state.picture} alt={this.state.name} />
-                //     <h2>
-                //         Welcome {this.state.name}! 
-                //         Email: {this.state.email}
-                //     </h2>
-                // </div>
-                <h1> Focus on me</h1>
+                <div style = {{width: '400px', margin: 'auto', background: '#f4f4f4', padding: '20px'}}>
+                    <img src = {this.state.picture} alt={this.state.name} />
+                    <h2>
+                        Welcome {this.state.name}! 
+                        Email: {this.state.email}
+                    </h2>
+                </div>
             )
         } else {
             gContent = (<GoogleLogin
@@ -85,4 +104,18 @@ class Google extends Component {
     }
 }
 
-export default Google;
+Google.propTypes = {
+    registerUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+});
+
+export default connect (
+    mapStateToProps,
+    {registerUser}
+)(withRouter(Google)); 
