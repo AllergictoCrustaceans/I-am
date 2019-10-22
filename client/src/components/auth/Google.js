@@ -19,6 +19,8 @@ class Google extends Component {
     responseGoogle = response => {
         if(response.error) {
             console.log(response.error);
+        } else {
+            console.log(response);
         }
         this.setState ({
             isLoggedIn: true,
@@ -31,27 +33,28 @@ class Google extends Component {
         const newUser = {
             name: this.state.name,
             email: this.state.email,
-            password: this.state.password,
-            password2: this.state.password2
+            // the following do not work because we don't have the data to pull their password.
+            // password: this.state.password,
+            // password2: this.state.password2
         }; 
 
         this.props.registerUser(newUser, this.props.history);
-
-
+        console.log(newUser);
     }
 
     // REPLACE WITH THE CODE BELOW
-    UNSAFE_componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
-        if (nextProps.auth.isAuthenticated) {
-          this.props.history.push("/dashboard"); // push user to dashboard when they login
-        }
-    if (nextProps.errors) {
-          this.setState({
-            errors: nextProps.errors
-          });
-        }
-      }
+    // UNSAFE_componentWillReceiveProps(nextProps) {
+    //     console.log('is this working');
+    //     console.log(nextProps);
+    //     if (nextProps.auth.isAuthenticated) {
+    //       this.props.history.push("/dashboard"); // push user to dashboard when they login
+    //     }
+    // if (nextProps.errors) {
+    //       this.setState({
+    //         errors: nextProps.errors
+    //       });
+    //     }
+    //   }
 
 
     // componentDidUpdate(prevProps, prevState) {
