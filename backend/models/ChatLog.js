@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 let chatlogSchema = new Schema (
     {
-        name: {
-            type:String,
+        userID: {
+            type: String,
             required: true
         },
         date: {
@@ -12,23 +12,28 @@ let chatlogSchema = new Schema (
         },
         botInput: {
             type: String,
+            required: true
         },
         userInput : {
             type: String,
         },
-        Positive: {
+        overallSentiment: {
+            type: String,
+            required: true
+        },
+        positive: {
             type: Number,
             required: true,
         },
-        Mixed: {
+        mixed: {
             type: Number,
             required: true
         },
-        Neutral: {
+        neutral: {
             type: Number,
             required: true
         },
-        Negative: {
+        negative: {
             type: Number,
             required: true
         }
