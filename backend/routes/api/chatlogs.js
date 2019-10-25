@@ -13,20 +13,26 @@ const comprehend = new AWS.Comprehend({
 
 //GET chatlog database userInput, botInput ONLY
 router.get('/chatlog', (req, res) => {
-    ChatLog.find()
+    ChatLog.find({}, {
+        "botInput" : 1,
+        "userInput" : 1,
+        "date" : 1
+    }).sort({
+        "date" : 1
+    })
     .then((chatlog) => res.json(chatlog))
     .catch((err) => res.status(400).json('Error:' + err))
 });
 
 
-//GET parts of the chatlog database
+//GET parts (get conversations by date) of the ChatLog database
 router.get('/chatlog/:id', (req, res) => {
     ChatLog.findById(req.params.id) 
-    .then(() => res.json(chatlog))
+    .then((chatlog) => res.json(chatlog))
     .catch((err) => res.status(400).json('Error:' + err))
 });
 
-//POST user input into the chatlog database
+//POST user input, and comprehend data into the ChatLog database
 router.post('/chatlog', async (req, res) => {
     if(!req.body.userInput || !req.body.userID || !req.body.date || !req.body.botInput) {
         return res.status(400).json('Error. Incorrect input.');
@@ -65,7 +71,7 @@ router.post('/chatlog', async (req, res) => {
     console.log(data);
 
     newChatLog.save()
-    .then(() => res.json('User input sent to chatlog database'))
+    .then(() => res.json('User input sent to ChatLog database'))
     .catch((err) => res.status(400).json('Error:' + err))
 });
 
