@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 
 
 const users = require('./routes/api/users');
-const chatlog = require('./routes/api/chatlog');
+const chatlogs = require('./routes/api/chatlogs');
 // const mood = require('./routes/api/moodNTopic'); 
 
 //Middleware
@@ -41,7 +41,7 @@ require('./config/passport')(passport);
 
 //Routes
 app.use('/api/users', users);
-app.use('/api/chatlog', chatlog);
+app.use('/api/chatlogs', chatlogs);
 // app.use('/api/moodNTopic', mood);
 
 
