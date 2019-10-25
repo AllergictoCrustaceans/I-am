@@ -58,9 +58,9 @@ class Google extends Component {
 
 
     // componentDidUpdate(prevProps, prevState) {
-    //     if(nextProps.auth.isAuthenticated) {
-    //         this.props.history.push('/dashboard');
-    //     }
+        // if(nextProps.auth.isAuthenticated) {
+        //     this.props.history.push('/dashboard');
+        // }
         
     //     if(nextProps.error) {
     //         this.setState ({
