@@ -28,7 +28,7 @@ app.use(bodyParser.json());
 
 const users = require('./routes/api/users');
 const chatlogs = require('./routes/api/chatlogs');
-// const mood = require('./routes/api/moodNTopic'); 
+const moods = require('./routes/api/moods'); 
 
 //Middleware
 app.use(passport.initialize());
@@ -42,7 +42,7 @@ require('./config/passport')(passport);
 //Routes
 app.use('/api/users', users);
 app.use('/api/chatlogs', chatlogs);
-// app.use('/api/moodNTopic', mood);
+app.use('/api/moods', moods);
 
 
 const PORT = process.env.PORT || 5000;
