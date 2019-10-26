@@ -1,21 +1,70 @@
 const express = require('express');
 const router = express.Router();
-let topic = require('../../models/Topic');
-let chatlog = require('../../models/ChatLog');
+let Topic = require('../../models/Topic');
+let ChatLog = require('../../models/ChatLog');
+
+let AWS = require('aws-sdk');
+const comprehend = new AWS.Comprehend({
+    region: 'us-west-2'
+});
 
 // //combine chatlog and topic database together
 // //assign colors to the sentiments.
-// router.ChatLog.find({
-// 	"$where": "this.CT Chatlog.botInput, Chatlog.userInput, Chatlog.date FROM ChatLog INNER JOIN User as User ON User.name  == this. Chatlog.name "
-// },{
-// 	"Chatlog.botInput": 1,
-// 	"Chatlog.userInput": 1,
-// 	"Chatlog.date": 1
-// }
-// ).sort({
-// 	"Chatlog.date": 1
-// });
 
-// router.get('/mood', (req, res) => {
+// NO ROUTES FOR DELETING, UPDATING
 
-// })
+//GET all sentiment values with colorful nodes from ChatLog database
+router.get('/mood', (req, res) => {
+    ChatLog.find({}, {
+        "positive" : 1,
+        "mixed" : 1,
+        "neutral" : 1,
+        "negative" : 1,
+        "date" : 1
+    }).sort({
+        "date" : 1
+    })
+    .then((moods) => res.json(moods))
+    .catch((err) => res.status(400).json('Error' + err))
+})
+
+//GET keywords associated to sentiment values from Topic database ON HOVER (FRONTEND)
+router.get('/mood/:id', (req, res) => {
+    Topic.find({}, {
+        "keywords" : 1
+    })
+    .then((mood) => res.json(mood))
+    .catch((err) => res.status(400).json('Error:' + err))
+});
+
+//POST comprehend keyphrase data into the Topic database
+router.post('/moods', async (req, res) => {
+    const userInput = req.body.userInput;
+    const userID = req.body.userID;
+
+    // DETECT KEYPHRASE
+    const keyphraseParams = {
+        LanguageCode : 'en',
+        Text: userInput
+    }
+
+    const data = await comprehend.detectKeyPhrases(keyphraseParams).promise();
+    
+
+    const keywords = data.KeyPhrases.Text;
+
+    const newTopic = new Topic ({
+        userInput,
+        userID,
+        keywords,
+    });
+
+    console.log(data);
+
+    newTopic.save()
+    .then(() => res.json('Keyphrase and its details sent to Topic database.'))
+    .catch((err) => res.status(400).json('Error:' + err))
+});
+
+
+module.exports = router;
