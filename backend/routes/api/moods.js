@@ -1,15 +1,11 @@
 const express = require('express');
 const router = express.Router();
-let Topic = require('../../models/Topic');
 let ChatLog = require('../../models/ChatLog');
 
 let AWS = require('aws-sdk');
 const comprehend = new AWS.Comprehend({
     region: 'us-west-2'
 });
-
-// //combine chatlog and topic database together
-// //assign colors to the sentiments.
 
 // NO ROUTES FOR DELETING, UPDATING
 
@@ -20,24 +16,24 @@ router.get('/mood', (req, res) => {
         "mixed" : 1,
         "neutral" : 1,
         "negative" : 1,
-        "date" : 1
-    }).sort({
-        "date" : 1
     })
     .then((moods) => res.json(moods))
     .catch((err) => res.status(400).json('Error' + err))
 })
 
-//GET keywords associated to sentiment values from Topic database ON HOVER (FRONTEND)
+//GET keywords associated to sentiment values from ChatLog database
 router.get('/mood/:id', (req, res) => {
-    Topic.find({}, {
-        "keywords" : 1
+    ChatLog.find({}, {
+        "keywords" : 1,
+        "date" : 1
+    }).sort({
+        "date" : 1
     })
     .then((mood) => res.json(mood))
     .catch((err) => res.status(400).json('Error:' + err))
 });
 
-//POST comprehend keyphrase data into the Topic database
+//POST comprehend keyphrase data into the ChatLog database
 router.post('/moods', async (req, res) => {
     const userInput = req.body.userInput;
     const userID = req.body.userID;
