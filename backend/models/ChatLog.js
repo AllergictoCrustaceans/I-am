@@ -17,7 +17,7 @@ let chatlogSchema = new Schema (
         userInput : {
             type: String,
         },
-        keywords : {
+        topic : {
             type: String,
             required: true
         },
