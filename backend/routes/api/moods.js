@@ -34,7 +34,7 @@ router.get('/mood/:id', (req, res) => {
 });
 
 //POST comprehend keyphrase data into the ChatLog database
-router.post('/moods', async (req, res) => {
+router.post('/mood', async (req, res) => {
     const userInput = req.body.userInput;
     const userID = req.body.userID;
 
