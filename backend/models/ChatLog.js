@@ -17,6 +17,10 @@ let chatlogSchema = new Schema (
         userInput : {
             type: String,
         },
+        keywords : {
+            type: String,
+            required: true
+        },
         overallSentiment: {
             type: String,
             required: true
