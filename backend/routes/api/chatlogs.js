@@ -7,6 +7,7 @@ const comprehend = new AWS.Comprehend({
     region: 'us-west-2'
 });
 
+const lexruntime = new AWS.LexRuntime();
 
 
 //NO ROUTES FOR DELETING, UPDATING
@@ -24,23 +25,24 @@ router.get('/chatlog', (req, res) => {
     .catch((err) => res.status(400).json('Error:' + err))
 });
 
-
+//Let's not implement this yet.
 //GET parts (get conversations by date) of the ChatLog database
-router.get('/chatlog/:id', (req, res) => {
-    ChatLog.findById(req.params.id) 
-    .then((chatlog) => res.json(chatlog))
-    .catch((err) => res.status(400).json('Error:' + err))
-});
+// router.get('/chatlog/:id', (req, res) => {
+//     ChatLog.findById(req.params.id) 
+//     .then((chatlog) => res.json(chatlog))
+//     .catch((err) => res.status(400).json('Error:' + err))
+// });
+//Let's not implement this yet
 
 //POST user input, and comprehend data into the ChatLog database
 router.post('/chatlog', async (req, res) => {
     if(!req.body.userInput || !req.body.userID || !req.body.date || !req.body.botInput) {
         return res.status(400).json('Error. Incorrect input.');
     } 
-    const userInput = req.body.userInput;
+    const userInput = req.body.userInput; //get from lex?
     const userID = req.body.userID;
     const date = req.body.date;
-    const botInput = req.body.botInput;
+    const botInput = req.body.botInput; //get from lex?
 
     // DETECT TEXT SENTIMENT
     const sentimentParams = {
@@ -48,7 +50,27 @@ router.post('/chatlog', async (req, res) => {
         Text: userInput
     }
     
+    //AWS Comprehend
     const data = await comprehend.detectSentiment(sentimentParams).promise();
+
+
+    //GET TOPIC & botInput
+    const lexParams = {
+        botAlias: 'Test',
+        botName: 'IAM',
+        contentType: '',
+        inputStream: '',
+        userId: '',
+        accept: '',
+        requestAttributes: any,
+        sessionAttributes: any,
+        checkpointLabelFilter: ''
+    }
+
+    //AWS Lex
+    const lexData = await lexruntime.postContent(lexParams).promise();
+
+    console.log(lexData);
 
     const overallSentiment = data.Sentiment;
     const positive = data.SentimentScore.Positive;
