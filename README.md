@@ -3,5 +3,6 @@ I-AM is a chatbot that lets a user talk about any subject, then detects and trac
 The following APIs are used: 
 - AWS Lex
 - AWS Comprehend
-- AWS Connect
-- AWS Amplify
+- AWS Connect (Integration of Lex and Comprehend)
+- AWS Amplify (Deployment & hosting if going serverless)
+
