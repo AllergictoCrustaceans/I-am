@@ -43,18 +43,18 @@ class Google extends Component {
     }
 
     // REPLACE WITH THE CODE BELOW
-    // UNSAFE_componentWillReceiveProps(nextProps) {
-    //     console.log('is this working');
-    //     console.log(nextProps);
-    //     if (nextProps.auth.isAuthenticated) {
-    //       this.props.history.push("/dashboard"); // push user to dashboard when they login
-    //     }
-    // if (nextProps.errors) {
-    //       this.setState({
-    //         errors: nextProps.errors
-    //       });
-    //     }
-    //   }
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        console.log('is this working');
+        console.log(nextProps);
+        if (nextProps.auth.isAuthenticated) {
+          this.props.history.push("/dashboard"); // push user to dashboard when they login
+        }
+    if (nextProps.errors) {
+          this.setState({
+            errors: nextProps.errors
+          });
+        }
+      }
 
 
     // componentDidUpdate(prevProps, prevState) {
