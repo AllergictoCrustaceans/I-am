@@ -1,69 +1,34 @@
 const express = require('express');
 const router = express.Router();
-let ChatLog = require('../../models/ChatLog');
 
-let AWS = require('aws-sdk');
-const comprehend = new AWS.Comprehend({
-    region: 'us-west-2'
-});
+const AWS = require('aws-sdk');
+AWS.config.update({region: 'us-west-2'}); 
 
-// NO ROUTES FOR DELETING, UPDATING
+const documentClient = new AWS.DynamoDB.DocumentClient({region: 'us-west-2'});
 
-//GET all sentiment values with colorful nodes from ChatLog database
-router.get('/mood', (req, res) => {
-    ChatLog.find({}, {
-        "positive" : 1,
-        "mixed" : 1,
-        "neutral" : 1,
-        "negative" : 1,
-    })
-    .then((moods) => res.json(moods))
-    .catch((err) => res.status(400).json('Error' + err))
-})
+async function getUserTopic() {
+    router.get('/moods', (req, res) => {
+        const getTopicParams = {
+            TableName : 'Messages',
+            FilterExpression: '#t = :t AND #n = :n',
+            ExpressionAttributeNames: {
+                '#t' : 'Topic',
+                '#n' : 'Name'
+            },
+            ExpressionAttributeValues: {
+                // ":n" : the oauth email that the user is assocated to
+                // ":t" : the topic name that the user selected on screen
+            },
+        }
 
-//GET keywords associated to sentiment values from ChatLog database
-router.get('/mood/:id', (req, res) => {
-    ChatLog.find({}, {
-        "topic" : 1,
-        "date" : 1
-    }).sort({
-        "date" : 1
-    })
-    .then((mood) => res.json(mood))
-    .catch((err) => res.status(400).json('Error:' + err))
-});
+        const data = await documentClient.scan(getTopicParams).promise();
+        try {
+            console.log(data);
+        } catch(err) {
+            console.log(err);
+        }
+    })  
+}
 
-//POST comprehend keyphrase data into the ChatLog database
-// router.post('/mood', async (req, res) => {
-//     const userInput = req.body.userInput;
-//     const userID = req.body.userID;
-
-//     // DETECT KEYPHRASE
-//     const keyphraseParams = {
-//         LanguageCode : 'en',
-//         Text: userInput
-//     }
-
-//     const data = await comprehend.detectKeyPhrases(keyphraseParams).promise();
-    
-
-//     const keywords = data.KeyPhrases.Text;
-
-//     const newTopic = new Topic ({
-//         userInput,
-//         userID,
-//         keywords,
-//     });
-
-//     console.log(data);
-
-//     newTopic.save()
-//     .then(() => res.json('Keyphrase and its details sent to Topic database.'))
-//     .catch((err) => res.status(400).json('Error:' + err))
-// });
-
-
-//NEW IDEA: Get data of topic from Amazon Lex, and store it into Chat Log database
-
-
+exports.handler = getUserTopic;
 module.exports = router;
