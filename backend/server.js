@@ -1,25 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 const cors = require('cors');
 const passport = require('passport');
+const AWS = require('aws-sdk');
+const documentClient = new AWS.DynamoDB.DocumentClient({region: 'us-west-2'});
 require('dotenv').config();
 
-const db = require('./config/keys').mongoURI;
-
-//Mongoose connection
-mongoose.connect(
-    db,
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true 
-    }
-)
-.then(() => console.log('MongoDB successful connection.'))
-.catch(err => console.log(err));
-
-
 const app = express();
+
+//connect DynamoDB
 
 //Middleware
 app.use(bodyParser.urlencoded ({extended: false}));
@@ -27,7 +16,6 @@ app.use(bodyParser.json());
 
 
 const users = require('./routes/api/users');
-const chatlogs = require('./routes/api/chatlogs');
 const moods = require('./routes/api/moods'); 
 
 //Middleware
@@ -41,7 +29,6 @@ require('./config/passport')(passport);
 
 //Routes
 app.use('/api/users', users);
-app.use('/api/chatlogs', chatlogs);
 app.use('/api/moods', moods);
 
 
