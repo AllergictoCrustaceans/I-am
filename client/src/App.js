@@ -43,7 +43,7 @@ import Oauth from './components/Oauth';
 class App extends Component {
   render () {
     return (
-      <Provider store = {store}>
+      // <Provider store = {store}>
         <Router>
           <div className = "App">
             <Oauth />
@@ -56,7 +56,7 @@ class App extends Component {
             </Switch> */}
           </div>
         </Router>
-      </Provider>
+      // </Provider>
     );
   }
 }
