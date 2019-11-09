@@ -1,0 +1,9 @@
+{
+	"auth": {
+		"iame7391187": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	}
+}
