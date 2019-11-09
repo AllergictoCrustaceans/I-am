@@ -1,0 +1,37 @@
+{
+    "paths": [
+        {
+            "name": "/main",
+            "lambdaFunction": "usersInfoFunction",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST"
+                ]
+            }
+        }
+    ],
+    "resourceName": "usersInfo",
+    "apiName": "usersInfo",
+    "functionArns": [
+        {
+            "lambdaFunction": "usersInfoFunction"
+        }
+    ],
+    "privacy": {
+        "auth": 1,
+        "unauth": 0,
+        "authRoleName": "amplify-i-am-local-130158-authRole",
+        "unAuthRoleName": "amplify-i-am-local-130158-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "usersInfoFunction",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
