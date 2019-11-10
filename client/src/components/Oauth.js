@@ -1,6 +1,7 @@
-import React, {useEffect}from 'react';
+import React, {useEffect, Component} from 'react';
 import '../App.css';
-import {Auth, Hub} from 'aws-amplify';
+import {withAuthenticator} from 'aws-amplify-react';
+import {Auth, Hub, API} from 'aws-amplify';
 
 function checkUser() {
     Auth.currentAuthenticatedUser()
