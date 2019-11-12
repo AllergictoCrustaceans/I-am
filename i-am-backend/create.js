@@ -100,7 +100,7 @@ async export function main(event, context, callback) {
     }
   };
 
-  dynamoDb.put(params, (error, data) => {
+  dynamoDb.put(putParams, (error, data) => {
     // Set response headers to enable CORS (Cross-Origin Resource Sharing)
     const headers = {
       "Access-Control-Allow-Origin": "*",
