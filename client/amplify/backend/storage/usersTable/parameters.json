@@ -1,7 +1,0 @@
-{
-    "tableName": "usersTable",
-    "partitionKeyName": "ID",
-    "partitionKeyType": "N",
-    "sortKeyName": "Email",
-    "sortKeyType": "S"
-}
