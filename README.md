@@ -8,5 +8,8 @@ The following APIs are used:
 The following Amazon services are used to contribute to the app flow:
 - AWS API Gateway (Oauth and HTTP requests)
 - AWS Amplify (Deployment)
+- Lambda
+- Serverless
+- React
 
 
