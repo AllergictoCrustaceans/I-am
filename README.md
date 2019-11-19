@@ -1,3 +1,9 @@
+IMPORTANT: For the sake of my own clarity and organization, this repo only contains the backend portion of the app. 
+
+To view the front-end portion, please see the repo called 'i-am-client'. 
+
+
+Brief Overview of I-AM:
 I-AM is a serverless chatbot app that lets a user talk about any subject, then detects and tracks the user's emotions regarding that subject throughout time. 
 
 The following APIs are used: 
