@@ -18,4 +18,7 @@ The following Amazon services are used to contribute to the app flow:
 - Serverless
 - React
 
+Services that were built into the app, but were ultimately not used:
+- AWS S3
+
 
