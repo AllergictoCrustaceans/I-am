@@ -1,4 +1,4 @@
-##H2 DRAFT
+## DRAFT AS OF 11/21
 
 **IMPORTANT:** For the sake of my own clarity and organization, this repo only contains the backend portion of the app. 
 
