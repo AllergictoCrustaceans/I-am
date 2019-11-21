@@ -5,7 +5,8 @@ export async function main(event, context) {
   console.log(event);
   const params = {
     TableName: process.env.tableName,
-    KeyConditionExpression: '#userID =:userID',
+    ProjectionExpression: '#userID, topic, overallSentiment, positive, neutral, mixed, negative',
+    KeyConditionExpression: '#userID = :userID',
     ExpressionAttributeNames: {
       '#userID' : 'userID'
     },
@@ -17,7 +18,6 @@ export async function main(event, context) {
   try {
     const result = await dynamoDbLib.call("query", params);
     if (result.Items) {
-      // Return the retrieved item
       return success(result.Items);
     } else {
       return failure({ status: false, error: "Item not found." });
