@@ -48,7 +48,7 @@ functions:
     handler: get.main
     events:
       - http:
-          path: messages/{id}
+          path: moods
           method: get
           cors: true
           authorizer: aws_iam
