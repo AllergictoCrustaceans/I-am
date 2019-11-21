@@ -73,10 +73,11 @@ async function main(event, context) {
             }
         };
     }
+
         const putParams = {
             TableName: 'UsersMessages',
             Item: {
-                "userID": event.currentIntent.slots.name,
+                "userID" : event.currentIntent.slots.email,
                 "messageID": uuid.v1(),
                 "timestamp": Date.now(),
                 "userInput": params.Text,
@@ -89,10 +90,18 @@ async function main(event, context) {
                 "negative": response.SentimentScore.Negative
             },
         };
+
         console.log("***************************************", sentiment);
 
+        try {
+            const result = await documentClient.put(putParams).promise();
+            console.log("Success", result);
+        } catch(e) {
+            console.log(e);
+        }
 
-        await documentClient.put(putParams).promise();
+        console.log(":)");
+
     return sentiment;
 }
 
