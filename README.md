@@ -1,8 +1,8 @@
 ## DRAFT AS OF 11/21
 
-**IMPORTANT:** For the sake of my own clarity and organization, this repo only contains the backend portion of the app. 
-
-To view the front-end portion, please see the repo called 'i-am-client'. 
+**IMPORTANT:** 
+For the sake of my own clarity and organization, this repo only contains the backend portion of the app. 
+To view the front-end portion, please see the repo called [i-am-client](https://github.com/AllergictoCrustaceans/i-am-client). 
 
 
 **Brief Overview of I-AM:**
