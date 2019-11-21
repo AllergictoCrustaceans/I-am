@@ -1,11 +1,11 @@
-## DRAFT AS OF 11/21
+# DRAFT AS OF 11/21
 
-**IMPORTANT:** 
+### **IMPORTANT:** 
 For the sake of my own clarity and organization, this repo only contains the backend portion of the app. 
 To view the front-end portion, please see the repo called [i-am-client](https://github.com/AllergictoCrustaceans/i-am-client). 
 
 
-**Brief Overview of I-AM:**
+## **Brief Overview of I-AM:**
 I-AM is a serverless chatbot app that lets a user talk about any subject, then detects and tracks the user's emotions regarding that subject throughout time. 
 
 The following APIs are used: 
@@ -28,11 +28,18 @@ Services that were built into the app, but were ultimately not used:
 
 
 
-## **High-Level Overview of App Flow**
+## **High-Level Overview of Services Connection/Usage**
+![Image of AWS Services connection with each other](servicesFlow.png)
+
+
+## **High-Level Overview of App Flow (in association with Services)**
 ![Image of high-level overview of app flow](appFlow.png)
 
 
 
+## **What does create.js do?**
+![Image of what create.js does as a backend script](createFlow.png)
 
 
-
+## **What does get.js do?** 
+![Image of what get-js does as a backend script](getFlow.png)
