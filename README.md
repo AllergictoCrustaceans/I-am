@@ -24,7 +24,15 @@ Services that were built into the app, but were ultimately not used:
 - AWS S3
 
 
-**High-Level Overview of App Flow**
+
+
+
+
+## **High-Level Overview of App Flow**
 ![Image of high-level overview of app flow](appFlow.png)
+
+
+
+
 
 
