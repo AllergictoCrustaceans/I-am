@@ -2,7 +2,10 @@
 
 ### **IMPORTANT:** 
 For the sake of my own clarity and organization, this repo only contains the backend portion of the app. 
-To view the front-end portion, please see the repo called [i-am-client](https://github.com/AllergictoCrustaceans/i-am-client), git clone the repo to a code editor of your choice, and "npm start". Or, click on link http://localhost:3000.
+To view the front-end portion, please do the following:
+1.) Click on this link to repo [i-am-client](https://github.com/AllergictoCrustaceans/i-am-client) 
+2.) git clone the repo to a code editor of your choice
+3.) "npm start" (this should run under "http://localhost:3000".) 
 
 
 ## **What is I-AM?:**
