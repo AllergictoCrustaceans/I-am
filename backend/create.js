@@ -26,7 +26,7 @@ async function main(event, context) {
                 "fulfillmentState" : "Fulfilled",
                 "message" : {
                     "contentType" : "PlainText",
-                    "content" : "Wow! That's something to celebrate. :) Do you feel like this incident taught you something new about yourself?"
+                    "content" : "Wow! That's something to celebrate. :) I'll log this good vibe for ya. Check your moods!"
                 }
             }
         };
@@ -40,7 +40,7 @@ async function main(event, context) {
                 "fulfillmentState" : "Fulfilled",
                 "message" : {
                     "contentType" : "PlainText",
-                    "content" : "I'm not sure how I feel about this either. The good and the bad parts are necessary, don't ya think?"
+                    "content" : "I'm not sure how I feel about this either. Hmm, tell you what, I'll log this 'meh' vibe for ya. Check your moods!"
                 }
             }
         };
@@ -54,7 +54,7 @@ async function main(event, context) {
                 "fulfillmentState" : "Fulfilled",
                 "message" : {
                     "contentType" : "PlainText",
-                    "content" : "I understand. Hey-- but you know what? There's nothing wrong with feeling neutral about this. That's what makes us human. :) "
+                    "content" : "I understand. Hey-- but you know what? There's nothing wrong with feeling neutral about this. That's what makes us human. I got your feelings on memory. Check your moods! :) "
                 }
             }
         };
@@ -68,7 +68,7 @@ async function main(event, context) {
                 "fulfillmentState" : "Fulfilled",
                 "message" : {
                     "contentType" : "PlainText",
-                    "content" : "Ooof. That sounds rough :/ How have you been holding up since this happened?"
+                    "content" : "Ooof. That sounds rough :/ I'll log this sad vibe from ya, but chin up you know? You're still an amazing person! Check your moods when you ready :)"
                 }
             }
         };
