@@ -41,7 +41,7 @@ Services that were built into the app, but were ultimately not used:
 
 In case the image is too small to view, here I go at describing its flow: 
 
-The entire app is configured with AWS Amplify CLI (acts as the front-end umbrella of the app). The backend scripts (get.js, create.js) that correspond to the configured API endpoints are deployed as lambda functions via Serverless. After backend deployment, one of the lambda functions, create.js, is manually hooked onto the lex bot via AWS Lex console. 
+The entire app is configured with AWS Amplify CLI (acts as the umbrella of the app). The backend scripts (get.js, create.js) that correspond to the configured API endpoints are deployed as lambda functions via Serverless. After backend deployment, one of the lambda functions, create.js, is manually hooked onto the lex bot via AWS Lex console. 
 
 **Brief of create.js:** It is designed to have the lex bot UI call the lex bot API, which invokes the lambda function create.js to call AWS Comprehend to do sentiment analysis, and call DynamoDB to save sentiment analysis data, user and bot input from lex data to persist data. 
 
