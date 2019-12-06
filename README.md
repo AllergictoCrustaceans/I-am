@@ -37,7 +37,7 @@ Services that were built into the app, but were ultimately not used:
 
 
 ## **High-Level Overview of Services Connection/Usage**
-![Image of AWS Services connection with each other]()
+![Image of AWS Services connection with each other](servicesFlow.png)
 
 In case the image is too small to view, here I go at describing its flow: 
 
@@ -47,7 +47,7 @@ As for AWS Cognito and AWS API Gateway, the security credentials are all created
 
 
 ## **High-Level Overview of App Flow (in association with Services)**
-![Image of high-level overview of app flow]()
+![Image of high-level overview of app flow](appFlow.png)
 
 In case the image is too small to view, here I go at describing its flow:
 
@@ -62,11 +62,11 @@ In case the image is too small to view, here I go at describing its flow:
 5.) Under endpoint /moods, the user gets to see the log of their moods regarding all topics they've expression opinions about, and the backend magic of get.js is ignited. Scroll down below to "What does get.js do?" for a brief description of this magic.
 
 ## **What does lambda function create.js do?**
-![Image of what create.js does as a backend script]()
+![Image of what create.js does as a backend script](lexFlow.png)
 
 create.js is a backend script that is hooked to the lex bot as a lambda function. Its job is to retrieve key-value pairs sent from the lexbot (from the front-end), use comprehend's detectSentiment method to deduce user's sentiment regarding a particular topic, then call dynamoDB to put lex bot's data, as well as the computed sentiment values to into a data table for safekeeping. 
 
 ## **What does lambda function get.js do?** 
-![Image of what get-js does as a backend script]()
+![Image of what get-js does as a backend script](moodsFlow.png)
 
 get.js is a backend script that is NOT hooked to the lexbot, but is still created as a lambda function because of how the backend was deployed (via serverless). Its job is to query back particular data columns (topic, sentiment values) of the authenticated user from dynamodb to be displayed in the frontend. In this case, get.js is connected to endpoint "/moods", so all results returned back from dynamodb query will display at that respective endpoint. 
