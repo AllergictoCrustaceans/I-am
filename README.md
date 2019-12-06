@@ -41,9 +41,13 @@ Services that were built into the app, but were ultimately not used:
 
 In case the image is too small to view, here I go at describing its flow: 
 
-The entire app is configured through AWS Amplify CLI, and the REST APIs are created under the CLI. The backend scripts (get.js, create.js) that correspond to the configured API endpoints are deployed as lambda functions. After backend deployment,one of the lambda functions (create.js) is manually hooked onto the lex bot via AWS Lex console. The backend is designed to have the lex bot UI call the lex bot API, which invokes the lambda function create.js. Within create.js, it calls AWS Comprehend to do sentiment analysis, and calls DynamoDB to save sentiment analysis data, user and bot input from lex data to persist data. 
+The entire app is configured with AWS Amplify CLI (acts as the front-end umbrella of the app). The backend scripts (get.js, create.js) that correspond to the configured API endpoints are deployed as lambda functions via Serverless. After backend deployment, one of the lambda functions, create.js, is manually hooked onto the lex bot via AWS Lex console. 
 
-As for AWS Cognito and AWS API Gateway, the security credentials are all created and configured on the AWS Management Console. 
+Brief of create.js: It is designed to have the lex bot UI call the lex bot API, which invokes the lambda function create.js to call AWS Comprehend to do sentiment analysis, and call DynamoDB to save sentiment analysis data, user and bot input from lex data to persist data. 
+
+Brief of get.js: It is invoked via AWS API Gateway endpoint /moods, and it is designed to get sentiment and topic values from dynamoDB to be displayed on the frontend. 
+
+As for AWS Cognito, the security credentials are all created and configured on the AWS Management Console, and tested through AWS API Gateway Test CLI before building the frontend. 
 
 
 ## **High-Level Overview of App Flow (in association with Services)**
@@ -57,16 +61,16 @@ In case the image is too small to view, here I go at describing its flow:
 
 3.) The main page has two buttons. One button links to the lex bot under endpoint /mia. The other button links to a log of the user's topics and moods that has transpired between Mia and the user, and this is under endpoint /moods. 
 
-4.) Under endpoint /mia, the user talks to lexbot MIA, and the backend magic of create.js is ignited. Scroll down below to "What does create.js do?" for a brief description of this magic. 
+4.) Under endpoint /mia, the user talks to lex chatbot, and the backend magic of create.js is invoked. Scroll down below to "What does create.js do?" for a brief description of this magic. 
 
-5.) Under endpoint /moods, the user gets to see the log of their moods regarding all topics they've expression opinions about, and the backend magic of get.js is ignited. Scroll down below to "What does get.js do?" for a brief description of this magic.
+5.) Under endpoint /moods, the user gets to see the log of their moods regarding all topics they've expressed opinions about, and the backend magic of get.js is invoked. Scroll down below to "What does get.js do?" for a brief description of this magic.
 
 ## **What does lambda function create.js do?**
 ![Image of what create.js does as a backend script](lexFlow.png)
 
-create.js is a backend script that is hooked to the lex bot as a lambda function. Its job is to retrieve key-value pairs sent from the lexbot (from the front-end), use comprehend's detectSentiment method to deduce user's sentiment regarding a particular topic, then call dynamoDB to put lex bot's data, as well as the computed sentiment values to into a data table for safekeeping. 
+create.js is a backend script that is hooked to the lex bot as a lambda function. Its job is to retrieve key-value pairs sent from the lexbot (from the front-end), use comprehend's detectSentiment method to deduce user's sentiment regarding a particular topic, and call dynamoDB to put lex bot's data, as well as the computed sentiment values to into a data table for safekeeping. 
 
 ## **What does lambda function get.js do?** 
 ![Image of what get-js does as a backend script](moodsFlow.png)
 
-get.js is a backend script that is NOT hooked to the lexbot, but is still created as a lambda function because of how the backend was deployed (via serverless). Its job is to query back particular data columns (topic, sentiment values) of the authenticated user from dynamodb to be displayed in the frontend. In this case, get.js is connected to endpoint "/moods", so all results returned back from dynamodb query will display at that respective endpoint. 
+get.js is a backend script that is NOT hooked to the lexbot, but is still created as a lambda function because of how the backend was deployed (via Serverless). Its job is to query back particular data columns (topic, sentiment values) of the authenticated user from dynamodb to be displayed in the frontend. In this case, get.js is connected to endpoint "/moods", so all results returned back from dynamodb query will display at that respective endpoint. 
