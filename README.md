@@ -16,6 +16,9 @@ I-AM is a serverless chatbot app that lets a user talk about any subject, then d
 This app is intended to tackle the taboo of expressing vulnerability in society, and make user's more conscious of their emotions and reactions regarding any topics of their choice. 
 
 
+## Can I see a demo?
+
+![](iamDemo.gif)
 
 ## **Services used to build I-AM:**
 The following APIs are integral to the app's functionality: 
